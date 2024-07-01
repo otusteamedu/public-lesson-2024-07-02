@@ -1,0 +1,29 @@
+framework:
+  workflows:
+    order_process:
+      type: 'state_machine'
+      marking_store:
+        type: 'method'
+        property: 'state'
+      supports:
+        - App\Entity\Order
+      initial_marking: new
+      places:
+        - new
+        - accepted
+        - paid
+        - sent
+        - finished
+      transitions:
+        accepted:
+          from: new
+          to: accepted
+        paid:
+          from: accepted
+          to: paid
+        sent:
+          from: paid
+          to: sent
+        finished:
+          from: sent
+          to: finished

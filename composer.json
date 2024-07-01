@@ -19,6 +19,7 @@
         "symfony/runtime": "6.4.*",
         "symfony/serializer": "6.4.*",
         "symfony/validator": "6.4.*",
+        "symfony/workflow": "6.4.*",
         "symfony/yaml": "6.4.*"
     },
     "config": {
