@@ -1,7 +1,7 @@
 framework:
   workflows:
     order_process:
-      type: 'state_machine'
+      type: 'workflow'
       marking_store:
         type: 'method'
         property: 'state'
@@ -11,19 +11,27 @@ framework:
       places:
         - new
         - accepted
+        - not_paid
         - paid
+        - collected
+        - not_collected
         - sent
         - finished
       transitions:
         accept:
           from: new
           to: accepted
-        pay:
+        pay_new:
+          from: new
+          to: [new, paid]
+        pay_accepted:
           from: accepted
-          to: paid
+          to: [accepted, paid]
+        collect:
+          from: accepted
+          to: [accepted, collected]
         send:
-          guard: 'subject.isCollected()'
-          from: paid
+          from: [accepted, paid, collected]
           to: sent
         deliver:
           from: sent

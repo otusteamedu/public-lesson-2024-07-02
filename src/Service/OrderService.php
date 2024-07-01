@@ -10,14 +10,14 @@ class OrderService
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private readonly WorkflowInterface $orderProcessStateMachine,
+        private readonly WorkflowInterface $orderProcessWorkflow,
     ) {
     }
 
     public function changeState(Order $order, string $transition): bool
     {
-        if ($this->orderProcessStateMachine->can($order, $transition)) {
-            $this->orderProcessStateMachine->apply($order, $transition);
+        if ($this->orderProcessWorkflow->can($order, $transition)) {
+            $this->orderProcessWorkflow->apply($order, $transition);
             $this->entityManager->flush();
 
             return true;

@@ -14,8 +14,8 @@ class Order
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private string $state;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $state;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isCollected = false;
@@ -33,12 +33,12 @@ class Order
         $this->id = $id;
     }
 
-    public function getState(): string
+    public function getState(): ?array
     {
         return $this->state;
     }
 
-    public function setState(string $state): void
+    public function setState(array $state): void
     {
         $this->state = $state;
     }
