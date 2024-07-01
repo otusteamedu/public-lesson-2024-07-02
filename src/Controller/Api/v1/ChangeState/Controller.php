@@ -31,6 +31,13 @@ class Controller
             return new JsonResponse(['message' => 'Cannot change state'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return new JsonResponse(['id' => $order->getId(), 'state' => $order->getState()]);
+        return new JsonResponse(
+            [
+                'id' => $order->getId(),
+                'state' => $order->getState(),
+                'isPaid' => $order->isPaid(),
+                'isCollected' => $order->isCollected()
+            ]
+        );
     }
 }

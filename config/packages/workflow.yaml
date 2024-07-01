@@ -3,18 +3,15 @@ framework:
     order_process:
       type: 'workflow'
       marking_store:
-        type: 'method'
-        property: 'state'
+        service: 'App\Service\OrderMarkingStore'
       supports:
         - App\Entity\Order
       initial_marking: new
       places:
         - new
         - accepted
-        - not_paid
         - paid
         - collected
-        - not_collected
         - sent
         - finished
       transitions:

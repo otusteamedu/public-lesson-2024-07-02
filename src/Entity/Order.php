@@ -14,11 +14,14 @@ class Order
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'json', nullable: true)]
-    private ?array $state;
+    #[ORM\Column(type: 'string', nullable: false)]
+    private string $state;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isCollected = false;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $isPaid = false;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private DateTimeInterface $deliveredAt;
@@ -33,12 +36,12 @@ class Order
         $this->id = $id;
     }
 
-    public function getState(): ?array
+    public function getState(): string
     {
         return $this->state;
     }
 
-    public function setState(array $state): void
+    public function setState(string $state): void
     {
         $this->state = $state;
     }
@@ -61,5 +64,15 @@ class Order
     public function setDeliveredAt(DateTimeInterface $deliveredAt): void
     {
         $this->deliveredAt = $deliveredAt;
+    }
+
+    public function isPaid(): bool
+    {
+        return $this->isPaid ?? false;
+    }
+
+    public function setIsPaid(bool $isPaid): void
+    {
+        $this->isPaid = $isPaid;
     }
 }
