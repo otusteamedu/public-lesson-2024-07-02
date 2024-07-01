@@ -16,6 +16,9 @@ class Order
     #[ORM\Column(type: 'string', nullable: false)]
     private string $state;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $isCollected = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,5 +37,15 @@ class Order
     public function setState(string $state): void
     {
         $this->state = $state;
+    }
+
+    public function isCollected(): bool
+    {
+        return $this->isCollected ?? false;
+    }
+
+    public function setIsCollected(bool $isCollected): void
+    {
+        $this->isCollected = $isCollected;
     }
 }

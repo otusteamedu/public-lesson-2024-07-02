@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Order;
-use App\Entity\OrderStateEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 
@@ -15,10 +14,10 @@ class OrderService
     ) {
     }
 
-    public function changeState(Order $order, OrderStateEnum $newState): bool
+    public function changeState(Order $order, string $transition): bool
     {
-        if ($this->orderProcessStateMachine->can($order, $newState->value)) {
-            $order->setState($newState->value);
+        if ($this->orderProcessStateMachine->can($order, $transition)) {
+            $this->orderProcessStateMachine->apply($order, $transition);
             $this->entityManager->flush();
 
             return true;

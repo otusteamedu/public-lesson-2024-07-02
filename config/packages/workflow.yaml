@@ -15,15 +15,16 @@ framework:
         - sent
         - finished
       transitions:
-        accepted:
+        accept:
           from: new
           to: accepted
-        paid:
+        pay:
           from: accepted
           to: paid
-        sent:
+        send:
+          guard: 'subject.isCollected()'
           from: paid
           to: sent
-        finished:
+        deliver:
           from: sent
           to: finished

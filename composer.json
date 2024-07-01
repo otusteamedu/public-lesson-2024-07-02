@@ -17,6 +17,7 @@
         "symfony/framework-bundle": "6.4.*",
         "symfony/property-access": "6.4.*",
         "symfony/runtime": "6.4.*",
+        "symfony/security-bundle": "6.4.*",
         "symfony/serializer": "6.4.*",
         "symfony/validator": "6.4.*",
         "symfony/workflow": "6.4.*",

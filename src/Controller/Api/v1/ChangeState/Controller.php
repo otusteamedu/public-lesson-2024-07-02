@@ -27,12 +27,7 @@ class Controller
             return new JsonResponse(['message' => 'Order not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $state = OrderStateEnum::tryFrom($request->state);
-        if ($state === null) {
-            return new JsonResponse(['message' => 'Invalid state'], Response::HTTP_BAD_REQUEST);
-        }
-
-        if (!$this->orderService->changeState($order, $state)) {
+        if (!$this->orderService->changeState($order, $request->state)) {
             return new JsonResponse(['message' => 'Cannot change state'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 

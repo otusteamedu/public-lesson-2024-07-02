@@ -1,0 +1,24 @@
+digraph workflow {
+  ratio="compress" rankdir="LR"
+  node [fontsize="9" fontname="Arial" color="#333333" fillcolor="lightblue" fixedsize="false" width="1"];
+  edge [fontsize="9" fontname="Arial" color="#333333" arrowhead="normal" arrowsize="0.5"];
+
+  place_c2a6b03f190dfb2b4aa91f8af8d477a9bc3401dc [label=<<B>new</B>>, shape=circle style="filled"];
+  place_51c817ab85e3c10c1544cbe74ec1106357ad59f5 [label=<<B>accepted</B>>, shape=circle];
+  place_9e1f1120d2eedc498808e1d855cfdbbd5564f22b [label=<<B>paid</B>>, shape=circle];
+  place_27e7700fdaa16b99ae9d594813284eb0a992cc16 [label=<<B>sent</B>>, shape=circle];
+  place_f957097d7a22775f6bea41b46cae4d14274dac9f [label=<<B>finished</B>>, shape=circle];
+  transition_b6589fc6ab0dc82cf12099d1c2d40ab994e8410c [label=<<B>accept</B>>, shape="box" regular="1"];
+  transition_356a192b7913b04c54574d18c28d46e6395428ab [label=<<B>pay</B>>, shape="box" regular="1"];
+  transition_da4b9237bacccdf19c0760cab7aec4a8359010b0 [label=<<B>sent</B>>, shape="box" regular="1"];
+  transition_77de68daecd823babbb58edb1c8e14d7106e83bb [label=<<B>finished</B>>, shape="box" regular="1"];
+  place_c2a6b03f190dfb2b4aa91f8af8d477a9bc3401dc -> transition_b6589fc6ab0dc82cf12099d1c2d40ab994e8410c [style="solid"];
+  transition_b6589fc6ab0dc82cf12099d1c2d40ab994e8410c -> place_51c817ab85e3c10c1544cbe74ec1106357ad59f5 [style="solid"];
+  place_51c817ab85e3c10c1544cbe74ec1106357ad59f5 -> transition_356a192b7913b04c54574d18c28d46e6395428ab [style="solid"];
+  transition_356a192b7913b04c54574d18c28d46e6395428ab -> place_9e1f1120d2eedc498808e1d855cfdbbd5564f22b [style="solid"];
+  place_9e1f1120d2eedc498808e1d855cfdbbd5564f22b -> transition_da4b9237bacccdf19c0760cab7aec4a8359010b0 [style="solid"];
+  transition_da4b9237bacccdf19c0760cab7aec4a8359010b0 -> place_27e7700fdaa16b99ae9d594813284eb0a992cc16 [style="solid"];
+  place_27e7700fdaa16b99ae9d594813284eb0a992cc16 -> transition_77de68daecd823babbb58edb1c8e14d7106e83bb [style="solid"];
+  transition_77de68daecd823babbb58edb1c8e14d7106e83bb -> place_f957097d7a22775f6bea41b46cae4d14274dac9f [style="solid"];
+}
+
