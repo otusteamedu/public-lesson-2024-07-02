@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: '`order`')]
@@ -18,6 +19,9 @@ class Order
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $isCollected = false;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private DateTimeInterface $deliveredAt;
 
     public function getId(): ?int
     {
@@ -47,5 +51,15 @@ class Order
     public function setIsCollected(bool $isCollected): void
     {
         $this->isCollected = $isCollected;
+    }
+
+    public function getDeliveredAt(): DateTimeInterface
+    {
+        return $this->deliveredAt;
+    }
+
+    public function setDeliveredAt(DateTimeInterface $deliveredAt): void
+    {
+        $this->deliveredAt = $deliveredAt;
     }
 }
